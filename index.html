@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#000000" />
-    <title>Play | SwiftDice</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/icon-512.png" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="manifest" href="/manifest.webmanifest">
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <script type="module">
-      import * as buffer from 'buffer'
-      window.Buffer = buffer.Buffer
-    </script>
-    <script type="module" src="./src/index.tsx"></script>
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#000000" />
+  <title>Play | SwiftDice</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/icon-512.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="manifest" href="/manifest.webmanifest">
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <script type="module">
+    import * as buffer from 'buffer'
+    window.Buffer = buffer.Buffer
+  </script>
+  <script type="module" src="./src/index.tsx"></script>
+  <!-- ConveyThis: https://www.conveythis.com/   -->
+  <script src="//cdn.conveythis.com/javascript/conveythis-initializer.js"></script>
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function (e) {
+      ConveyThis_Initializer.init({
+        api_key: "pub_994d0a5ef45e0f974294accb88b6352f"
+      });
+    });
+  </script>
+</body>
+
 </html>
