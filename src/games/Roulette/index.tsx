@@ -115,7 +115,7 @@ export default function Roulette() {
     <>
       <GambaUi.Portal target="screen">
         <GambaUi.Responsive>
-          <Wrapper onContextMenu={(e) => e.preventDefault()}>
+          <Wrapper className='notranslate' onContextMenu={(e) => e.preventDefault()}>
             <Stats />
             <Results />
             <Table />
@@ -123,6 +123,7 @@ export default function Roulette() {
         </GambaUi.Responsive>
       </GambaUi.Portal>
       <GambaUi.Portal target="controls">
+      <Wrapper className='notranslate' >
         <GambaUi.Select
           options={CHIPS}
           value={selectedChip.value}
@@ -133,14 +134,15 @@ export default function Roulette() {
             </>
           )}
         />
+        </Wrapper>
         <GambaUi.Button
           disabled={!wager || gamba.isPlaying}
           onClick={clearChips}
         >
-          Clear
+         <span className='notranslate'> Clear </span>
         </GambaUi.Button>
         <GambaUi.PlayButton disabled={!wager || balanceExceeded || maxPayoutExceeded} onClick={play}>
-          Spin
+          <span className='notranslate'>  Spin </span>
         </GambaUi.PlayButton>
       </GambaUi.Portal>
     </>

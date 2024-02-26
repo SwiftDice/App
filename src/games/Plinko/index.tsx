@@ -6,6 +6,16 @@ import { PEG_RADIUS, PLINKO_RAIUS, Plinko as PlinkoGame, PlinkoProps, barrierHei
 import BUMP from './bump.mp3'
 import FALL from './fall.mp3'
 import WIN from './win.mp3'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  display: grid;
+  gap: 20px;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+  color: white;
+`
 
 function usePlinko(props: PlinkoProps, deps: React.DependencyList) {
   const [plinko, set] = React.useState<PlinkoGame>(null!)
@@ -84,7 +94,7 @@ export default function Plinko() {
             const s = Math.min(xx, yy)
 
             ctx.clearRect(0, 0, size.width, size.height)
-            ctx.fillStyle = '#D91141'
+            ctx.fillStyle = '#0b0b13'
             ctx.fillRect(0, 0, size.width, size.height)
             ctx.save()
             ctx.translate(size.width / 2 - plinko.width / 2 * s, size.height / 2 - plinko.height / 2 * s)
@@ -199,8 +209,13 @@ export default function Plinko() {
         />
       </GambaUi.Portal>
       <GambaUi.Portal target="controls">
-        <GambaUi.WagerInput value={wager} onChange={setWager} />
-        <div>Degen:</div>
+      <Wrapper className='notranslate' >
+          <GambaUi.WagerInput
+            value={wager}
+            onChange={setWager}
+          />
+        </Wrapper>
+        <div className='notranslate'>Degen:</div>
         <GambaUi.Switch
           disabled={gamba.isPlaying}
           checked={degen}

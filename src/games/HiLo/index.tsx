@@ -3,7 +3,16 @@ import { useGamba } from 'gamba-react-v2'
 import React from 'react'
 import { MAX_CARD_SHOWN, RANKS, RANK_SYMBOLS, SOUND_CARD, SOUND_FINISH, SOUND_LOSE, SOUND_PLAY, SOUND_WIN } from './constants'
 import { Card, CardContainer, CardPreview, CardsContainer, Container, Option, Options, Profit } from './styles'
+import styled from 'styled-components'
 
+const Wrapper = styled.div`
+  display: grid;
+  gap: 20px;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+  color: white;
+`
 const BPS_PER_WHOLE = 10000
 
 const randomRank = () => 1 + Math.floor(Math.random() * (RANKS - 1))
@@ -145,7 +154,7 @@ export default function HiLo(props: HiLoConfig) {
                       }}
                     >
                       <Card>
-                        <div className="rank">{RANK_SYMBOLS[card.rank]}</div>
+                        <div className="rank notranslate">{RANK_SYMBOLS[card.rank]}</div>
                         <div className="suit" style={{ backgroundImage: 'url(' + props.logo + ')' }} />
                       </Card>
                     </CardContainer>
@@ -160,9 +169,9 @@ export default function HiLo(props: HiLoConfig) {
                   onMouseLeave={() => hoverOption(undefined)}
                 >
                   <div>
-                  <span style={{ color: 'green' }}>&#x2B06;</span> {/* Green arrow up */}
+                    <span style={{ color: 'green' }}>&#x2B06;</span> {/* Green arrow up */}
                   </div>
-                  <div>HI - ({Math.max(...betHi).toFixed(2)}x)</div>
+                  <div className='notranslate'>HI - ({Math.max(...betHi).toFixed(2)}x)</div>
                 </Option>
                 <Option
                   selected={option === 'lo'}
@@ -171,9 +180,9 @@ export default function HiLo(props: HiLoConfig) {
                   onMouseLeave={() => hoverOption(undefined)}
                 >
                   <div>
-                  <span style={{ color: 'red' }}>&#x2B07;</span> {/* Red arrow down */}
+                    <span style={{ color: 'red' }}>&#x2B07;</span> {/* Red arrow down */}
                   </div>
-                  <div>LO - ({Math.max(...betLo).toFixed(2)}x)</div>
+                  <div className='notranslate'>LO - ({Math.max(...betLo).toFixed(2)}x)</div>
                 </Option>
               </Options>
             </div>
@@ -182,7 +191,7 @@ export default function HiLo(props: HiLoConfig) {
                 const opacity = bet[rankIndex] > 0 ? .9 : .5
                 return (
                   <Card key={rankIndex} $small style={{ opacity }} onClick={() => addCard(rankIndex)}>
-                    <div className="rank">{RANK_SYMBOLS[rankIndex]}</div>
+                    <div className="rank notranslate">{RANK_SYMBOLS[rankIndex]}</div>
                   </Card>
                 )
               })}
@@ -198,12 +207,15 @@ export default function HiLo(props: HiLoConfig) {
       <GambaUi.Portal target="controls">
         {!profit ? (
           <>
-            <GambaUi.WagerInput
-              value={initialWager}
-              onChange={setInitialWager}
-            />
+            <Wrapper className='notranslate' >
+              <GambaUi.WagerInput
+                value={initialWager}
+                onChange={setInitialWager}
+              />
+            </Wrapper>
+
             <GambaUi.PlayButton disabled={!option || initialWager > maxWagerForBet} onClick={play}>
-              Deal card
+              <span className='notranslate'>Deal card</span>
             </GambaUi.PlayButton>
             {initialWager > maxWagerForBet && (
               <GambaUi.Button onClick={() => setInitialWager(maxWagerForBet)}>
@@ -218,7 +230,7 @@ export default function HiLo(props: HiLoConfig) {
               Finish
             </GambaUi.Button>
             <GambaUi.PlayButton disabled={!option} onClick={play}>
-              Deal card
+              <span className='notranslate'>Deal card</span>
             </GambaUi.PlayButton>
           </>
         )}

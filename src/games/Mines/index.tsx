@@ -5,6 +5,16 @@ import React from 'react'
 import { GRID_SIZE, MINE_SELECT, PITCH_INCREASE_FACTOR, SOUND_EXPLODE, SOUND_FINISH, SOUND_STEP, SOUND_TICK, SOUND_WIN } from './constants'
 import { CellButton, Container, Container2, Grid, Level, Levels, StatusBar,margintop } from './styles'
 import { generateGrid, revealAllMines, revealGold } from './utils'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  display: grid;
+  gap: 20px;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+  color: white;
+`
 
 function Mines() {
   const game = GambaUi.useGame()
@@ -142,9 +152,9 @@ function Mines() {
                 return (
                   <Level key={i} $active={currentLevel === i}>
                     <div>
-                      LEVEL {i + 1}
+                      LEVEL <span className='notranslate'>{i + 1}</span>
                     </div>
-                    <div>
+                    <div className='notranslate'>
                       <TokenValue amount={cumProfit} />
                     </div>
                   </Level>
@@ -152,7 +162,7 @@ function Mines() {
               })}
           </Levels>
           <StatusBar>
-            <div>
+            <div className='notranslate'>
               <span>
                 Mines: {mines}
               </span>
@@ -190,6 +200,7 @@ function Mines() {
       <GambaUi.Portal target="controls">
         {!started ? (
           <>
+            <Wrapper className='notranslate'>
             <GambaUi.WagerInput value={initialWager} onChange={setInitialWager} />
             <GambaUi.Select
               options={MINE_SELECT}
@@ -199,6 +210,7 @@ function Mines() {
                 <>{mines} Mines</>
               )}
             />
+            </Wrapper>
             <GambaUi.PlayButton onClick={start}>
               Start
             </GambaUi.PlayButton>
